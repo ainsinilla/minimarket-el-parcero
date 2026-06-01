@@ -2,132 +2,175 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Minimarket El Parcero</title>
 
-<meta name="theme-color" content="#111827">
+<meta name="theme-color" content="#ffffff">
 
 <style>
+
+:root{
+--bg:#f4f4f5;
+--card:#ffffff;
+--text:#18181b;
+--muted:#71717a;
+--border:#e4e4e7;
+--dark:#18181b;
+--success:#25D366;
+}
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+
+html{
+-webkit-tap-highlight-color: transparent;
 }
 
 body{
-background:linear-gradient(135deg,#2d006b,#001f7a);
+font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+background:var(--bg);
+color:var(--text);
 min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-padding:20px;
+padding:18px;
+}
+
+.wrapper{
+width:100%;
+max-width:430px;
 }
 
 .card{
-width:100%;
-max-width:450px;
-background:white;
-border-radius:24px;
+background:var(--card);
+border-radius:32px;
 overflow:hidden;
-box-shadow:0 15px 50px rgba(0,0,0,.35);
+box-shadow:
+0 1px 2px rgba(0,0,0,.05),
+0 10px 30px rgba(0,0,0,.08);
 }
 
-.header{
-padding:30px;
+.hero{
+padding:28px 24px 10px;
 text-align:center;
-background:#111827;
 }
 
 .logo{
-width:100%;
-max-width:250px;
-border-radius:12px;
-}
-
-.content{
-padding:25px;
+width:180px;
+max-width:100%;
+object-fit:contain;
 }
 
 .title{
-text-align:center;
-font-size:28px;
+margin-top:14px;
+font-size:30px;
 font-weight:700;
-color:#111827;
-margin-bottom:5px;
+letter-spacing:-0.03em;
 }
 
 .subtitle{
-text-align:center;
-color:#64748b;
-margin-bottom:25px;
+margin-top:6px;
+color:var(--muted);
+font-size:15px;
 }
 
-.data{
-background:#f8fafc;
-padding:18px;
-border-radius:15px;
-margin-bottom:20px;
+.info{
+padding:14px 24px 24px;
 }
 
 .row{
-margin-bottom:15px;
+padding:16px 0;
+border-bottom:1px solid var(--border);
 }
 
 .row:last-child{
-margin-bottom:0;
+border-bottom:none;
 }
 
 .label{
+color:var(--muted);
 font-size:13px;
-color:#64748b;
+margin-bottom:5px;
 }
 
 .value{
 font-size:18px;
 font-weight:600;
-color:#111827;
+letter-spacing:-0.02em;
 }
 
-button{
+.actions{
+padding:0 24px 24px;
+}
+
+.btn{
 width:100%;
 border:none;
-padding:16px;
-border-radius:14px;
+border-radius:18px;
+padding:17px;
 cursor:pointer;
 font-size:16px;
 font-weight:600;
+transition:.2s;
+}
+
+.btn:active{
+transform:scale(.98);
 }
 
 .copy{
-background:#16a34a;
+background:var(--dark);
 color:white;
 }
 
-.copy:hover{
-opacity:.95;
-}
-
 .whatsapp{
-background:#25D366;
+background:var(--success);
 color:white;
 margin-top:12px;
 }
 
-.msg{
-margin-top:15px;
+.note{
+margin-top:18px;
 text-align:center;
-font-weight:600;
-color:#16a34a;
+color:var(--muted);
+font-size:13px;
+line-height:1.5;
 }
 
-.footer{
-text-align:center;
-color:#94a3b8;
-font-size:12px;
-margin-top:20px;
+.toast{
+position:fixed;
+bottom:24px;
+left:50%;
+transform:translateX(-50%);
+background:#18181b;
+color:white;
+padding:13px 18px;
+border-radius:999px;
+font-size:14px;
+opacity:0;
+pointer-events:none;
+transition:.25s;
+}
+
+.toast.show{
+opacity:1;
+}
+
+@media(max-width:380px){
+
+.title{
+font-size:26px;
+}
+
+.value{
+font-size:16px;
+}
+
 }
 
 </style>
@@ -135,23 +178,25 @@ margin-top:20px;
 
 <body>
 
+<div class="wrapper">
+
 <div class="card">
 
-<div class="header">
-<img src="logo.jpg" class="logo">
-</div>
+<div class="hero">
 
-<div class="content">
+<img src="logo.jpg" class="logo" alt="El Parcero">
 
 <div class="title">
 Minimarket El Parcero
 </div>
 
 <div class="subtitle">
-Datos para transferencia
+Datos para transferencia bancaria
 </div>
 
-<div class="data">
+</div>
+
+<div class="info">
 
 <div class="row">
 <div class="label">Titular</div>
@@ -180,51 +225,70 @@ Datos para transferencia
 
 </div>
 
-<button class="copy" onclick="copiarDatos()">
+<div class="actions">
+
+<button class="btn copy" onclick="copiarDatos()">
 📋 Copiar datos de transferencia
 </button>
 
-<button class="whatsapp" onclick="enviarWhatsapp()">
+<button class="btn whatsapp" onclick="enviarWhatsapp()">
 💬 Enviar comprobante
 </button>
 
-<div id="mensaje" class="msg"></div>
-
-<div class="footer">
-Gracias por preferir Minimarket El Parcero ❤️
+<div class="note">
+Después de transferir, envía tu comprobante por WhatsApp.
 </div>
 
 </div>
 
+</div>
+
+</div>
+
+<div id="toast" class="toast">
+Datos copiados
 </div>
 
 <script>
 
-function copiarDatos(){
+function toast(text){
 
-const texto =
-`Minimarket El Parcero
+const t = document.getElementById("toast");
+
+t.textContent = text;
+t.classList.add("show");
+
+setTimeout(()=>{
+t.classList.remove("show");
+},2500);
+
+}
+
+async function copiarDatos(){
+
+const datos = `Minimarket El Parcero
 
 RUT: 78.141.261-9
 Banco: BancoEstado
-Tipo: Cuenta Vista
-Cuenta: 90279499459`;
+Tipo de cuenta: Cuenta Vista
+Número de cuenta: 90279499459`;
 
-navigator.clipboard.writeText(texto);
-
-document.getElementById("mensaje").innerHTML =
-"✅ Datos copiados correctamente";
-
-setTimeout(()=>{
-document.getElementById("mensaje").innerHTML="";
-},3000);
+try{
+await navigator.clipboard.writeText(datos);
+toast("✓ Datos copiados");
+}
+catch{
+toast("No fue posible copiar");
+}
 
 }
 
 function enviarWhatsapp(){
 
-window.location.href =
-"https://wa.me/56945530169?text=Hola%2C%20adjunto%20comprobante%20de%20transferencia%20para%20Minimarket%20El%20Parcero.";
+window.open(
+"https://wa.me/56945530169?text=Hola,%20adjunto%20comprobante%20de%20transferencia%20para%20Minimarket%20El%20Parcero.",
+"_blank"
+);
 
 }
 
