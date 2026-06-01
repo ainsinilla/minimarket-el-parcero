@@ -6,18 +6,23 @@
 
 <title>Minimarket El Parcero</title>
 
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#2e1a47">
 
 <style>
 
 :root{
---bg:#f5f5f7;
---card:#ffffff;
---text:#111827;
---muted:#6b7280;
---border:#ececec;
---dark:#111827;
---whatsapp:#25D366;
+/* Colores inspirados fielmente en el logo */
+--bg-gradient: linear-gradient(135deg, #1e3c72 0%, #2e1a47 50%, #911a6c 100%);
+--card: #ffffff;
+--text: #111827;
+--muted: #6b7280;
+--border: #f0f0f2;
+--dark: #111827;
+--whatsapp: #25D366;      /* Verde original de WhatsApp */
+--accent-yellow: #fcd116; /* Amarillo de la bandera */
+--accent-blue: #003893;   /* Azul de la bandera */
+--accent-red: #ce1126;    /* Rojo de la bandera */
+--btn-inline-bg: #fff9db; /* Fondo sutil para los microbotones */
 }
 
 *{
@@ -31,7 +36,8 @@ html{
 }
 
 body{
-background:var(--bg);
+background: var(--bg-gradient);
+background-attachment: fixed;
 font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
 color:var(--text);
 min-height:100vh;
@@ -51,8 +57,8 @@ background:var(--card);
 border-radius:32px;
 overflow:hidden;
 box-shadow:
-0 1px 3px rgba(0,0,0,.05),
-0 20px 40px rgba(0,0,0,.08);
+0 10px 30px rgba(0,0,0,.2),
+0 30px 60px rgba(0,0,0,.3);
 }
 
 .hero{
@@ -65,7 +71,7 @@ width:180px;
 max-width:100%;
 object-fit:cover;
 border-radius:18px;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
+box-shadow:0 8px 24px rgba(0,0,0,.15);
 }
 
 .title{
@@ -73,6 +79,7 @@ margin-top:18px;
 font-size:30px;
 font-weight:700;
 letter-spacing:-0.03em;
+color: var(--dark);
 }
 
 .subtitle{
@@ -95,14 +102,22 @@ border-bottom:none;
 }
 
 .label{
-color:var(--muted);
+color:var(--accent-blue);
 font-size:13px;
+font-weight: 600;
 margin-bottom:5px;
+text-transform: uppercase;
+letter-spacing: 0.03em;
 }
 
 .value{
 font-size:18px;
 font-weight:600;
+display: inline-flex;
+align-items: center;
+gap: 8px;
+flex-wrap: wrap;
+color: var(--dark);
 }
 
 .actions{
@@ -129,20 +144,53 @@ transform:scale(.98);
 }
 
 .copy{
-background:var(--dark);
-color:white;
+background: var(--dark);
+color: white;
+box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .whatsapp{
 margin-top:12px;
-background:var(--whatsapp);
-color:white;
+background: var(--whatsapp);
+color: white;
 }
 
 .icon{
 width:20px;
 height:20px;
 fill:currentColor;
+}
+
+/* Micro-botón circular adaptado a la estética del logo */
+.btn-inline-copy{
+background: var(--btn-inline-bg);
+border: none;
+border-radius: 50%;
+width: 32px;
+height: 32px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+color: var(--accent-red);
+transition: background 0.2s, color 0.2s, transform 0.1s;
+flex-shrink: 0;
+vertical-align: middle;
+-webkit-tap-highlight-color: transparent;
+}
+
+.btn-inline-copy:hover{
+background: #fded9c;
+color: var(--dark);
+}
+
+.btn-inline-copy:active{
+transform: scale(0.92);
+}
+
+.btn-inline-copy .icon{
+width: 14px;
+height: 14px;
 }
 
 .note{
@@ -158,14 +206,16 @@ position:fixed;
 left:50%;
 bottom:24px;
 transform:translateX(-50%);
-background:#111827;
-color:white;
-padding:13px 18px;
+background: var(--accent-yellow);
+color: var(--dark);
+font-weight: 700;
+padding:13px 22px;
 border-radius:999px;
 font-size:14px;
 opacity:0;
 pointer-events:none;
 transition:.25s;
+box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 .toast.show{
@@ -211,27 +261,52 @@ Datos para transferencia bancaria
 
 <div class="row">
 <div class="label">Titular</div>
-<div class="value">Minimarket El Parcero</div>
+<div class="value">
+<span>Minimarket El Parcero</span>
+<button class="btn-inline-copy" onclick="copiarTexto('Minimarket El Parcero', '✓ Titular copiado')" aria-label="Copiar titular">
+<svg class="icon" viewBox="0 0 24 24"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H10V7h9v14z"/></svg>
+</button>
+</div>
 </div>
 
 <div class="row">
 <div class="label">RUT</div>
-<div class="value">78.141.261-9</div>
+<div class="value">
+<span>78.141.261-9</span>
+<button class="btn-inline-copy" onclick="copiarTexto('78.141.261-9', '✓ RUT copiado')" aria-label="Copiar RUT">
+<svg class="icon" viewBox="0 0 24 24"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H10V7h9v14z"/></svg>
+</button>
+</div>
 </div>
 
 <div class="row">
 <div class="label">Banco</div>
-<div class="value">BancoEstado</div>
+<div class="value">
+<span>BancoEstado</span>
+<button class="btn-inline-copy" onclick="copiarTexto('BancoEstado', '✓ Banco copiado')" aria-label="Copiar banco">
+<svg class="icon" viewBox="0 0 24 24"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H10V7h9v14z"/></svg>
+</button>
+</div>
 </div>
 
 <div class="row">
 <div class="label">Tipo de cuenta</div>
-<div class="value">Cuenta Vista</div>
+<div class="value">
+<span>Cuenta Vista</span>
+<button class="btn-inline-copy" onclick="copiarTexto('Cuenta Vista', '✓ Tipo de cuenta copiado')" aria-label="Copiar tipo de cuenta">
+<svg class="icon" viewBox="0 0 24 24"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H10V7h9v14z"/></svg>
+</button>
+</div>
 </div>
 
 <div class="row">
 <div class="label">Número de cuenta</div>
-<div class="value">90279499459</div>
+<div class="value">
+<span>90279499459</span>
+<button class="btn-inline-copy" onclick="copiarTexto('90279499459', '✓ Número de cuenta copiado')" aria-label="Copiar número de cuenta">
+<svg class="icon" viewBox="0 0 24 24"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H10V7h9v14z"/></svg>
+</button>
+</div>
 </div>
 
 </div>
@@ -305,6 +380,16 @@ catch{
 mostrarToast("Error al copiar");
 }
 
+}
+
+async function copiarTexto(texto, mensajeToast){
+try{
+await navigator.clipboard.writeText(texto);
+mostrarToast(mensajeToast);
+}
+catch{
+mostrarToast("Error al copiar");
+}
 }
 
 function enviarWhatsapp(){
