@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Minimarket El Parcero</title>
+
+<meta name="theme-color" content="#111827">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#2d006b,#001f7a);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.card{
+width:100%;
+max-width:450px;
+background:white;
+border-radius:24px;
+overflow:hidden;
+box-shadow:0 15px 50px rgba(0,0,0,.35);
+}
+
+.header{
+padding:30px;
+text-align:center;
+background:#111827;
+}
+
+.logo{
+width:100%;
+max-width:250px;
+border-radius:12px;
+}
+
+.content{
+padding:25px;
+}
+
+.title{
+text-align:center;
+font-size:28px;
+font-weight:700;
+color:#111827;
+margin-bottom:5px;
+}
+
+.subtitle{
+text-align:center;
+color:#64748b;
+margin-bottom:25px;
+}
+
+.data{
+background:#f8fafc;
+padding:18px;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+.row{
+margin-bottom:15px;
+}
+
+.row:last-child{
+margin-bottom:0;
+}
+
+.label{
+font-size:13px;
+color:#64748b;
+}
+
+.value{
+font-size:18px;
+font-weight:600;
+color:#111827;
+}
+
+button{
+width:100%;
+border:none;
+padding:16px;
+border-radius:14px;
+cursor:pointer;
+font-size:16px;
+font-weight:600;
+}
+
+.copy{
+background:#16a34a;
+color:white;
+}
+
+.copy:hover{
+opacity:.95;
+}
+
+.whatsapp{
+background:#25D366;
+color:white;
+margin-top:12px;
+}
+
+.msg{
+margin-top:15px;
+text-align:center;
+font-weight:600;
+color:#16a34a;
+}
+
+.footer{
+text-align:center;
+color:#94a3b8;
+font-size:12px;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="header">
+<img src="logo.jpg" class="logo">
+</div>
+
+<div class="content">
+
+<div class="title">
+Minimarket El Parcero
+</div>
+
+<div class="subtitle">
+Datos para transferencia
+</div>
+
+<div class="data">
+
+<div class="row">
+<div class="label">Titular</div>
+<div class="value">Minimarket El Parcero</div>
+</div>
+
+<div class="row">
+<div class="label">RUT</div>
+<div class="value">78.141.261-9</div>
+</div>
+
+<div class="row">
+<div class="label">Banco</div>
+<div class="value">BancoEstado</div>
+</div>
+
+<div class="row">
+<div class="label">Tipo de cuenta</div>
+<div class="value">Cuenta Vista</div>
+</div>
+
+<div class="row">
+<div class="label">Número de cuenta</div>
+<div class="value">90279499459</div>
+</div>
+
+</div>
+
+<button class="copy" onclick="copiarDatos()">
+📋 Copiar datos de transferencia
+</button>
+
+<button class="whatsapp" onclick="enviarWhatsapp()">
+💬 Enviar comprobante
+</button>
+
+<div id="mensaje" class="msg"></div>
+
+<div class="footer">
+Gracias por preferir Minimarket El Parcero ❤️
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function copiarDatos(){
+
+const texto =
+`Minimarket El Parcero
+
+RUT: 78.141.261-9
+Banco: BancoEstado
+Tipo: Cuenta Vista
+Cuenta: 90279499459`;
+
+navigator.clipboard.writeText(texto);
+
+document.getElementById("mensaje").innerHTML =
+"✅ Datos copiados correctamente";
+
+setTimeout(()=>{
+document.getElementById("mensaje").innerHTML="";
+},3000);
+
+}
+
+function enviarWhatsapp(){
+
+window.location.href =
+"https://wa.me/56945530169?text=Hola%2C%20adjunto%20comprobante%20de%20transferencia%20para%20Minimarket%20El%20Parcero.";
+
+}
+
+</script>
+
+</body>
+</html>
